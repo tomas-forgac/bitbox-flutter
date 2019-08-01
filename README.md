@@ -162,6 +162,6 @@ Optionally between step 1) and 2), send some balance to either testnet or mainne
 
 ## Acknowledgments
 
-This is a port of the original JS-based Bitbox library by Gabriel Cordana and Bitcoin.com, so first of all huge thanks to Gabriel and the whole Bitcoin.com team for doing so much for the BCH ecosystem.
+This is a port of the original JS-based Bitbox library by Gabriel Cardona and Bitcoin.com, so first of all huge thanks to Gabriel and the whole Bitcoin.com team for doing so much for the BCH ecosystem.
 
 Also I either re-used a lot of code originally wrote for Bitcoin or called some libraries (bip39 and bip32) by [anicdh](https://github.com/anicdh), so Thanks big time to him. Without that it would take me many more weeks!
