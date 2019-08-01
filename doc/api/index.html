@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 0.28.2">
+  <meta name="description" content="bitbox API docs, for the Dart programming language.">
+  <title>bitbox - Dart API docs</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li class="self-crumb">bitbox package</li>
+  </ol>
+  <div class="self-name">bitbox</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li class="self-crumb">bitbox package</li>
+    </ol>
+    
+    <h5 class="hidden-xs"><span class="package-name">bitbox</span> <span class="package-kind">package</span></h5>
+    <ol>
+          <li class="section-title">Libraries</li>
+          <li><a href="bitbox/bitbox-library.html">bitbox</a></li>
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <section class="desc markdown">
+        <h1 id="bitbox-lite">Bitbox lite</h1>
+<p>Lite version of <a href="https://developer.bitcoin.com/bitbox/">Bitcoin.com's Bitbox JS library</a> built for Flutter and with integration to Bitcoin.com's REST API.
+Works with mainnet and testnet.</p>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="1-depend-on-it">1) Depend on it</h3>
+<p>After you download the repository, add a local dependency into the pubspec.yaml of your testing or development projet:</p>
+<pre class="language-dart"><code>dependencies:
+  bitbox_plugin:
+    path: &lt;path to the directory&gt;/
+</code></pre>
+<h3 id="2-import-it">2) Import it</h3>
+<pre class="language-dart"><code>// There's a good chance your own project will use similar names as some of the 
+// classes in this library. A simple way to create some order is to import the 
+// library with Bitbox prefix:
+import 'package:bitbox/bitbox.dart' as Bitbox;
+</code></pre>
+<h3 id="2-use-it">2) Use it</h3>
+<pre class="language-dart"><code>// set this to true to use testnet
+final testnet = true;
+
+// After running the code for the first time, depositing an amount to the address 
+// displayed in the console, and waiting for confirmation, paste the generated 
+// mnemonic here, so the code continues below with address withdrawal
+String mnemonic = "";
+
+if (mnemonic == "") {
+  // generate 12-word (128bit) mnemonic
+  mnemonic = Bitbox.Mnemonic.generate();
+
+  print(mnemonic);
+}
+
+// generate a seed from mnemonic
+final seed = Bitbox.Mnemonic.toSeed(mnemonic);
+
+// create an instance of Bitbox.HDNode for mainnet
+final masterNode = Bitbox.HDNode.fromSeed(seed, testnet);
+
+// This format is compatible with Bitcoin.com wallet.
+// Other wallets use Change to m/44'/145'/0'/0
+final accountDerivationPath = "m/44'/0'/0'/0";
+
+// create an account node using the provided derivation path
+final accountNode = masterNode.derivePath(accountDerivationPath);
+
+// get account's extended private key
+final accountXPriv = accountNode.toXPriv();
+
+// create a Bitbox.HDNode instance of the first child in this account
+final childNode = accountNode.derive(0);
+
+// get an address of the child
+final address = childNode.toCashAddress();
+
+// if you are using testnet, set the appropriate rest api url before making any API
+// calls (like getting address or transaction details or broadcasting a transaction
+if (testnet) {
+  Bitbox.Bitbox.setRestUrl(restUrl: Bitbox.Bitbox.trestUrl);
+}
+
+// get address details
+final addressDetails = await Bitbox.Address.details(address);
+
+print(addressDetails);
+
+// If there is a confirmed balance, attempt to withdraw it
+if (addressDetails["balance"] &gt; 0) {
+  final builder = Bitbox.Bitbox.transactionBuilder(testnet: testnet);
+
+  // retrieve address' utxos from the rest api
+  final utxos = await Bitbox.Address.utxo(address) as List&lt;Bitbox.Utxo&gt;;
+
+  // placeholder for input signatures
+  final signatures = &lt;Map&gt;[];
+
+  // placeholder for total input balance
+  int totalBalance = 0;
+
+  // iterate through the list of address utxos and use them as inputs for the 
+  // withdrawal transaction
+  utxos.forEach((Bitbox.Utxo utxo) {
+    // add the utxo as an input for the transaction
+    builder.addInput(utxo.txid, utxo.vout);
+
+    // add a signature to the list to be used later
+    signatures.add({
+      "vin": signatures.length,
+      "key_pair": childNode.keyPair,
+      "original_amount": utxo.satoshis
+    });
+
+    totalBalance += utxo.satoshis;
+  });
+
+  // set an address to send the remaining balance to
+  final outputAddress = "";
+
+  // if there is an unspent balance, create a spending transaction
+  if (totalBalance &gt; 0 &amp;&amp; outputAddress != "") {
+    // calculate the fee based on number of inputs and one expected output
+    final fee = Bitbox.BitcoinCash.getByteCount(signatures.length, 1);
+
+    // calculate how much balance will be left over to spend after the fee
+    final sendAmount = totalBalance - fee;
+
+    // add the output based on the address provided in the testing data
+    builder.addOutput(outputAddress, sendAmount);
+
+    // sign all inputs
+    signatures.forEach((signature) {
+      builder.sign(signature["vin"], signature["key_pair"], 
+	    signature["original_amount"]);
+    });
+
+    // build the transaction
+    final tx = builder.build();
+
+    // broadcast the transaction
+    final txid = await Bitbox.RawTransactions.sendRawTransaction(tx.toHex());
+
+    // Yatta!
+    print("Transaction broadcasted: $txid");
+  } else if (totalBalance &gt; 0) {
+    print("Enter an output address to test withdrawal transaction");
+  }
+}
+</code></pre>
+<p>For further documentation, refer to apidoc of this repository</p>
+<h2 id="testing">Testing</h2>
+<p>There are some unit tests in test/bitbox_test.dart. They use data generated from the original <a href="https://developer.bitcoin.com/bitbox/">Bitbox for JS</a> and compare them with the output of this library. 
+The following is tested for both testnet and mainnet:</p><ul><li>Generating the master node from mnemonic and comparing both its XPub and XPriv</li><li>Generating an account node and comparing XPub and XPriv</li><li>Generating 10 test childs and comparing their private keys and addresses</li><li>Conversion of cashAddr format to legacy and vice versa</li><li>Fetching address details for the rest API</li><li>Fetching utxos for addresses with balance</li><li>Building a transaction spending the deposited balance and comparing its hash with Bitbox JS output</li><li>Optionally broadcasting the transaction and</li></ul>
+<p>To run the test:</p><ol><li>Generate the testing data by runing create_test_data.js with your local nodeJS engine</li><li>Update bitbox_test.dart with the path to the generated test_data.json file</li><li>Run bitbox_test.dart 
+Optionally between step 1) and 2), send some balance to either testnet or mainnet addresses (or both), wait for confirmations and run create_test_data.js again to update the data and generate testing transactions</li></ol>
+<h2 id="acknowledgments">Acknowledgments</h2>
+<p>This is a port of the original JS-based Bitbox library by Gabriel Cordana and Bitcoin.com, so first of all huge thanks to Gabriel and the whole Bitcoin.com team for doing so much for the BCH ecosystem.</p>
+<p>Also I either re-used a lot of code originally wrote for Bitcoin or called some libraries (bip39 and bip32) by <a href="https://github.com/anicdh">anicdh</a>, so Thanks big time to him. Without that it would take me many more weeks!</p>
+      </section>
+      
+        <section class="summary">
+            <h2>Libraries</h2>
+          <dl>
+            <dt id="bitbox">
+              <span class="name"><a href="bitbox/bitbox-library.html">bitbox</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>          </dl>
+        </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    bitbox 0.0.1
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

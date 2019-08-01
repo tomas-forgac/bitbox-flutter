@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the toCashAddress method from the HDNode class, for the Dart programming language.">
+  <title>toCashAddress method - HDNode class - bitbox library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">bitbox</a></li>
+    <li><a href="bitbox/bitbox-library.html">bitbox</a></li>
+    <li><a href="bitbox/HDNode-class.html">HDNode</a></li>
+    <li class="self-crumb">toCashAddress method</li>
+  </ol>
+  <div class="self-name">toCashAddress</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">bitbox</a></li>
+      <li><a href="bitbox/bitbox-library.html">bitbox</a></li>
+      <li><a href="bitbox/HDNode-class.html">HDNode</a></li>
+      <li class="self-crumb">toCashAddress method</li>
+    </ol>
+    
+    <h5>HDNode class</h5>
+    <ol>
+      <li class="section-title"><a href="bitbox/HDNode-class.html#constructors">Constructors</a></li>
+      <li><a href="bitbox/HDNode/HDNode.html">HDNode</a></li>
+      <li><a href="bitbox/HDNode/HDNode.fromSeed.html">fromSeed</a></li>
+      <li><a href="bitbox/HDNode/HDNode.fromXPriv.html">fromXPriv</a></li>
+      <li><a href="bitbox/HDNode/HDNode.fromXPub.html">fromXPub</a></li>
+    
+      <li class="section-title">
+        <a href="bitbox/HDNode-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="bitbox/HDNode/depth.html">depth</a></li>
+      <li><a href="bitbox/HDNode/fingerprint.html">fingerprint</a></li>
+      <li><a href="bitbox/HDNode/identifier.html">identifier</a></li>
+      <li><a href="bitbox/HDNode/index.html">index</a></li>
+      <li><a href="bitbox/HDNode/keyPair.html">keyPair</a></li>
+      <li><a href="bitbox/HDNode/parentFingerprint.html">parentFingerprint</a></li>
+      <li><a href="bitbox/HDNode/privateKey.html">privateKey</a></li>
+      <li><a href="bitbox/HDNode/publicKey.html">publicKey</a></li>
+      <li><a href="bitbox/HDNode/publicKeyList.html">publicKeyList</a></li>
+      <li><a href="bitbox/HDNode/rawPrivateKey.html">rawPrivateKey</a></li>
+      <li class="inherited"><a href="bitbox/HDNode/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="bitbox/HDNode/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="bitbox/HDNode-class.html#instance-methods">Methods</a></li>
+      <li><a href="bitbox/HDNode/derive.html">derive</a></li>
+      <li><a href="bitbox/HDNode/derivePath.html">derivePath</a></li>
+      <li><a href="bitbox/HDNode/toCashAddress.html">toCashAddress</a></li>
+      <li><a href="bitbox/HDNode/toLegacyAddress.html">toLegacyAddress</a></li>
+      <li><a href="bitbox/HDNode/toXPriv.html">toXPriv</a></li>
+      <li><a href="bitbox/HDNode/toXPub.html">toXPub</a></li>
+      <li class="inherited"><a href="bitbox/HDNode/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="bitbox/HDNode/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="bitbox/HDNode-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="bitbox/HDNode/operator_equals.html">operator ==</a></li>
+    
+    
+    
+      <li class="section-title"><a href="bitbox/HDNode-class.html#constants">Constants</a></li>
+      <li><a href="bitbox/HDNode/HIGHEST_BIT-constant.html">HIGHEST_BIT</a></li>
+      <li><a href="bitbox/HDNode/UINT31_MAX-constant.html">UINT31_MAX</a></li>
+      <li><a href="bitbox/HDNode/UINT32_MAX-constant.html">UINT32_MAX</a></li>
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-method">toCashAddress</span> method</h1></div>
+
+    <section class="multi-line-signature">
+      <span class="returntype">String</span>
+            <span class="name ">toCashAddress</span>
+(<wbr>)
+      
+    </section>
+    <section class="desc markdown">
+      <p>Returns HDNode's address in cashAddr format</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">String toCashAddress() =&gt; Address.toCashAddress(toLegacyAddress());</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    bitbox 0.0.1
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

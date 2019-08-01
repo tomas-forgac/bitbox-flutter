@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the sign method from the TransactionBuilder class, for the Dart programming language.">
+  <title>sign method - TransactionBuilder class - bitbox library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">bitbox</a></li>
+    <li><a href="bitbox/bitbox-library.html">bitbox</a></li>
+    <li><a href="bitbox/TransactionBuilder-class.html">TransactionBuilder</a></li>
+    <li class="self-crumb">sign method</li>
+  </ol>
+  <div class="self-name">sign</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">bitbox</a></li>
+      <li><a href="bitbox/bitbox-library.html">bitbox</a></li>
+      <li><a href="bitbox/TransactionBuilder-class.html">TransactionBuilder</a></li>
+      <li class="self-crumb">sign method</li>
+    </ol>
+    
+    <h5>TransactionBuilder class</h5>
+    <ol>
+      <li class="section-title"><a href="bitbox/TransactionBuilder-class.html#constructors">Constructors</a></li>
+      <li><a href="bitbox/TransactionBuilder/TransactionBuilder.html">TransactionBuilder</a></li>
+      <li><a href="bitbox/TransactionBuilder/TransactionBuilder.fromTransaction.html">fromTransaction</a></li>
+    
+      <li class="section-title">
+        <a href="bitbox/TransactionBuilder-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="bitbox/TransactionBuilder/DEFAULT_SEQUENCE.html">DEFAULT_SEQUENCE</a></li>
+      <li><a href="bitbox/TransactionBuilder/prevTxSet.html">prevTxSet</a></li>
+      <li><a href="bitbox/TransactionBuilder/SIGHASH_ALL.html">SIGHASH_ALL</a></li>
+      <li><a href="bitbox/TransactionBuilder/SIGHASH_ANYONECANPAY.html">SIGHASH_ANYONECANPAY</a></li>
+      <li><a href="bitbox/TransactionBuilder/SIGHASH_BITCOINCASHBIP143.html">SIGHASH_BITCOINCASHBIP143</a></li>
+      <li><a href="bitbox/TransactionBuilder/SIGHASH_NONE.html">SIGHASH_NONE</a></li>
+      <li><a href="bitbox/TransactionBuilder/SIGHASH_SINGLE.html">SIGHASH_SINGLE</a></li>
+      <li><a href="bitbox/TransactionBuilder/tx.html">tx</a></li>
+      <li class="inherited"><a href="bitbox/TransactionBuilder/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="bitbox/TransactionBuilder/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="bitbox/TransactionBuilder-class.html#instance-methods">Methods</a></li>
+      <li><a href="bitbox/TransactionBuilder/addInput.html">addInput</a></li>
+      <li><a href="bitbox/TransactionBuilder/addOutput.html">addOutput</a></li>
+      <li><a href="bitbox/TransactionBuilder/build.html">build</a></li>
+      <li><a href="bitbox/TransactionBuilder/buildIncomplete.html">buildIncomplete</a></li>
+      <li><a href="bitbox/TransactionBuilder/getByteCount.html">getByteCount</a></li>
+      <li><a href="bitbox/TransactionBuilder/setLockTime.html">setLockTime</a></li>
+      <li><a href="bitbox/TransactionBuilder/setVersion.html">setVersion</a></li>
+      <li><a href="bitbox/TransactionBuilder/sign.html">sign</a></li>
+      <li class="inherited"><a href="bitbox/TransactionBuilder/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="bitbox/TransactionBuilder/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="bitbox/TransactionBuilder-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="bitbox/TransactionBuilder/operator_equals.html">operator ==</a></li>
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-method">sign</span> method</h1></div>
+
+    <section class="multi-line-signature">
+      <span class="returntype">dynamic</span>
+            <span class="name ">sign</span>
+(<wbr><span class="parameter" id="sign-param-vin"><span class="type-annotation">int</span> <span class="parameter-name">vin</span>, </span> <span class="parameter" id="sign-param-keyPair"><span class="type-annotation"><a href="bitbox/ECPair-class.html">ECPair</a></span> <span class="parameter-name">keyPair</span>, </span> <span class="parameter" id="sign-param-value"><span class="type-annotation">int</span> <span class="parameter-name">value</span>, [</span> <span class="parameter" id="sign-param-hashType"><span class="type-annotation">int</span> <span class="parameter-name">hashType</span> = <span class="default-value">Transaction.SIGHASH_ALL</span></span> ])
+      
+    </section>
+    <section class="desc markdown">
+      <p>Add signature for the input <code>vin</code> using <code>keyPair</code> and with a specified <code>value</code></p>
+<p>Throws <code>ArgumentError</code> if something goes wrong</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">sign(int vin, ECPair keyPair, int value, [int hashType = Transaction.SIGHASH_ALL]) {
+  hashType = hashType | Transaction.SIGHASH_BITCOINCASHBIP143;
+
+  if (keyPair.network != null &amp;&amp; keyPair.network.toString().compareTo(_network.toString()) != 0) {
+    throw ArgumentError(&#39;Inconsistent network&#39;);
+  }
+
+  if (vin &gt;= _inputs.length) {
+    throw ArgumentError(&#39;No input at index: $vin&#39;);
+  }
+
+  if (this._needsOutputs(hashType)) {
+    throw ArgumentError(&#39;Transaction needs outputs&#39;);
+  }
+
+  final input = _inputs[vin];
+  final ourPubKey = keyPair.publicKey;
+
+  if (!_canSign(input)) {
+  &#47;&#47;      Uint8List prevOutScript = pubkeyToOutputScript(ourPubKey);
+    _prepareInput(input, ourPubKey, value);
+  }
+
+  var signatureHash = this._tx.hashForCashSignature(vin, input.signScript, value, hashType);
+
+  &#47;&#47; enforce in order signing of public keys
+  var signed = false;
+  for (var i = 0; i &lt; input.pubkeys.length; i++) {
+    if (HEX.encode(ourPubKey).compareTo(HEX.encode(input.pubkeys[i])) != 0) {
+      continue;
+    }
+
+    if (input.signatures[i] != null) {
+      throw ArgumentError(&#39;Signature already exists&#39;);
+    }
+
+    final signature = keyPair.sign(signatureHash);
+
+    input.signatures[i] = bscript.encodeSignature(signature, hashType);
+    signed = true;
+  }
+
+  if (!signed) {
+    throw ArgumentError(&#39;Key pair cannot sign for this input&#39;);
+  }
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    bitbox 0.0.1
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

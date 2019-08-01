@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the getUnconfirmed method from the Address class, for the Dart programming language.">
+  <title>getUnconfirmed method - Address class - bitbox library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">bitbox</a></li>
+    <li><a href="bitbox/bitbox-library.html">bitbox</a></li>
+    <li><a href="bitbox/Address-class.html">Address</a></li>
+    <li class="self-crumb">getUnconfirmed method</li>
+  </ol>
+  <div class="self-name">getUnconfirmed</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">bitbox</a></li>
+      <li><a href="bitbox/bitbox-library.html">bitbox</a></li>
+      <li><a href="bitbox/Address-class.html">Address</a></li>
+      <li class="self-crumb">getUnconfirmed method</li>
+    </ol>
+    
+    <h5>Address class</h5>
+    <ol>
+      <li class="section-title"><a href="bitbox/Address-class.html#constructors">Constructors</a></li>
+      <li><a href="bitbox/Address/Address.html">Address</a></li>
+    
+      <li class="section-title inherited">
+        <a href="bitbox/Address-class.html#instance-properties">Properties</a>
+      </li>
+      <li class="inherited"><a href="bitbox/Address/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="bitbox/Address/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title inherited"><a href="bitbox/Address-class.html#instance-methods">Methods</a></li>
+      <li class="inherited"><a href="bitbox/Address/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="bitbox/Address/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="bitbox/Address-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="bitbox/Address/operator_equals.html">operator ==</a></li>
+    
+    
+      <li class="section-title"><a href="bitbox/Address-class.html#static-methods">Static methods</a></li>
+      <li><a href="bitbox/Address/details.html">details</a></li>
+      <li><a href="bitbox/Address/detectFormat.html">detectFormat</a></li>
+      <li><a href="bitbox/Address/getUnconfirmed.html">getUnconfirmed</a></li>
+      <li><a href="bitbox/Address/toBase58Check.html">toBase58Check</a></li>
+      <li><a href="bitbox/Address/toCashAddress.html">toCashAddress</a></li>
+      <li><a href="bitbox/Address/toLegacyAddress.html">toLegacyAddress</a></li>
+      <li><a href="bitbox/Address/utxo.html">utxo</a></li>
+      <li><a href="bitbox/Address/validateAddress.html">validateAddress</a></li>
+    
+      <li class="section-title"><a href="bitbox/Address-class.html#constants">Constants</a></li>
+      <li><a href="bitbox/Address/formatCashAddr-constant.html">formatCashAddr</a></li>
+      <li><a href="bitbox/Address/formatLegacy-constant.html">formatLegacy</a></li>
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-method">getUnconfirmed</span> method</h1></div>
+
+    <section class="multi-line-signature">
+      <span class="returntype">Future</span>
+            <span class="name ">getUnconfirmed</span>
+(<wbr><span class="parameter" id="getUnconfirmed-param-addresses"><span class="type-annotation">dynamic</span> <span class="parameter-name">addresses</span>, [</span> <span class="parameter" id="getUnconfirmed-param-returnAsMap"><span class="type-annotation">dynamic</span> <span class="parameter-name">returnAsMap</span> = <span class="default-value">false</span></span> ])
+      
+    </section>
+    <section class="desc markdown">
+      <p>Returns list of unconfirmed transactions</p><ul><li>If <code>addresses</code> is <code>String</code>, it will return <code>Map</code> with unconfirmed transaction details.</li><li>If <code>addresses</code> is <code>List</code> of Strings and <code>returnAsMap</code> is true, it will return <code>Map</code> with cashAddress used as keys
+and <code>Map</code> objects with address details in values.</li><li>If <code>addresses</code> is <code>List</code> of Strings and <code>returnAsMap</code> is false, it will return <code>List</code> with details sorted in the
+same order as the input list of addresses.</li><li>Otherwise it will throw <code>FormatException</code></li></ul>
+<p>See <a href="https://developer.bitcoin.com/bitbox/docs/address#unconfirmed">https://developer.bitcoin.com/bitbox/docs/address#unconfirmed</a> for details about the returned format. However
+note, that processing from array to map is done on the library side</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">static Future&lt;dynamic&gt; getUnconfirmed(addresses, [returnAsMap = false]) async {
+  final result = await _sendRequest(&quot;unconfirmed&quot;, addresses);
+
+  if (result is Map) {
+    return Utxo.convertMapListToUtxos(result[&quot;utxos&quot;]);
+  } else if (result is List&lt;Map&gt;) {
+    final returnList = &lt;Map&gt;[];
+    final returnMap = &lt;String, List&gt;{};
+
+    result.forEach((addressUtxoMap) {
+      if (returnAsMap) {
+        returnMap[addressUtxoMap[&quot;cashAddr&quot;]] = Utxo.convertMapListToUtxos(addressUtxoMap[&quot;utxos&quot;]);
+      } else {
+        addressUtxoMap[&quot;utxos&quot;] = Utxo.convertMapListToUtxos(addressUtxoMap[&quot;utxos&quot;]);
+        returnList.add(addressUtxoMap);
+      }
+    });
+
+    return returnAsMap ? returnMap : returnList;
+  }
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    bitbox 0.0.1
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>
