@@ -153,9 +153,10 @@ The following is tested for both testnet and mainnet:
 
 To run the test:
 
-1. Generate the testing data by runing create_test_data.js with your local nodeJS engine
-2. Update bitbox_test.dart with the path to the generated test_data.json file
-3. Run bitbox_test.dart 
+1. Copy create_test_data.js to a separate directory and download the original Bitbox JS into the directory
+2. Generate the testing data by runing create_test_data.js with your local nodeJS engine
+3. Update bitbox_test.dart with the path to the generated test_data.json file
+4. Run bitbox_test.dart 
 Optionally between step 1) and 2), send some balance to either testnet or mainnet addresses (or both), wait for confirmations and run create_test_data.js again to update the data and generate testing transactions
 
 
