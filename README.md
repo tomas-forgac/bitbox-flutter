@@ -1,6 +1,6 @@
 # Bitbox lite
 
-Lite version of [Bitcoin.com's Bitbox JS library](https://developer.bitcoin.com/bitbox/) built for Flutter and with integration to Bitcoin.com's REST API.
+Lite version of [Bitcoin.com's Bitbox JS library](https://developer.bitcoin.com/bitbox/) for building Bitcoin Cash apps in Flutter. Integrated to Bitcoin.com's REST API.
 Works with mainnet and testnet.
 
 ## Getting Started
