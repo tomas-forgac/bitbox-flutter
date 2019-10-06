@@ -1,9 +1,8 @@
 import 'dart:typed_data';
 
-import 'transaction.dart';
 import 'utils/check_types.dart';
 Uint8List encode(int number, [Uint8List buffer,int offset]) {
-  if (!isUint(number, 53));
+//  if (!isUint(number, 53));
 
   buffer = buffer ?? new Uint8List(encodingLength(number));
   offset = offset ?? 0;

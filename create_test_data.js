@@ -27,7 +27,7 @@ function createTestData(mnemonic, testnet) {
 		"master_xpriv": bitbox.HDNode.toXPriv(masterNode),
 		"master_xpub": bitbox.HDNode.toXPub(masterNode),
 		"account_xpriv": bitbox.HDNode.toXPriv(accountNode),
-		"account_xpub": bitbox.HDNode.toXPub(accountNode),
+		"account_xpub": bitbox.HDNode.tdoXPub(accountNode),
 		"child_nodes" : []
 	};
 	

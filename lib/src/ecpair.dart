@@ -10,12 +10,12 @@ import 'utils/network.dart';
 /// Stores a keypair and provides various methods and factories for creating it and working with it
 class ECPair {
   final Uint8List _d;
-  final Uint8List _Q;
+  final Uint8List _q;
   final Network network;
   final bool compressed;
 
   /// Default constructor. If [network] is not provided, it will assume Bitcoin Cash mainnet
-  ECPair(this._d, this._Q, {network, this.compressed = true}):
+  ECPair(this._d, this._q, {network, this.compressed = true}):
     this.network = network ?? Network.bitcoinCash();
 
   /// Creates a keypair from the private key provided in WIF format
@@ -73,7 +73,7 @@ class ECPair {
     return ECPair.fromPrivateKey(d, network: network, compressed: compressed);
   }
 
-  Uint8List get publicKey  => _Q ?? ecc.pointFromScalar(_d, compressed);
+  Uint8List get publicKey  => _q ?? ecc.pointFromScalar(_d, compressed);
 
   Uint8List get privateKey => _d;
 

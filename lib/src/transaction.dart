@@ -4,7 +4,6 @@ import 'utils/p2pkh.dart' show P2PKH, P2PKHData;
 import 'crypto/crypto.dart' as bcrypto;
 import 'utils/script.dart' as bscript;
 import 'utils/opcodes.dart';
-import 'hdnode.dart';
 import 'utils/check_types.dart';
 import 'varuint.dart' as varuint;
 
@@ -21,11 +20,11 @@ class Transaction {
   static const SIGHASH_BITCOINCASHBIP143 = 0x40;
   static const ADVANCED_TRANSACTION_MARKER = 0x00;
   static const ADVANCED_TRANSACTION_FLAG = 0x01;
-  static final EMPTY_SCRIPT = Uint8List.fromList([]);
-  static final ZERO = HEX.decode('0000000000000000000000000000000000000000000000000000000000000000');
-  static final ONE = HEX.decode('0000000000000000000000000000000000000000000000000000000000000001');
-  static final VALUE_UINT64_MAX = HEX.decode('ffffffffffffffff');
-  static final BLANK_OUTPUT = Output(script: EMPTY_SCRIPT, valueBuffer: VALUE_UINT64_MAX);
+  static final emptyScript = Uint8List.fromList([]);
+  static final zero = HEX.decode('0000000000000000000000000000000000000000000000000000000000000000');
+  static final one = HEX.decode('0000000000000000000000000000000000000000000000000000000000000001');
+  static final valueUint64Max = HEX.decode('ffffffffffffffff');
+  static final blankOutput = Output(script: emptyScript, valueBuffer: valueUint64Max);
   static const SATOSHI_MAX = 21 * 1e14;
 
   int version;
@@ -121,7 +120,7 @@ class Transaction {
       hash: hash,
       index: index,
       sequence: sequence ?? DEFAULT_SEQUENCE,
-      script: scriptSig ?? EMPTY_SCRIPT));
+      script: scriptSig ?? emptyScript));
     return inputs.length - 1;
   }
 
@@ -137,7 +136,7 @@ class Transaction {
 
   /// Create hash for legacy signature
   hashForSignature(int inIndex, Uint8List prevOutScript, int hashType) {
-    if (inIndex >= inputs.length) return ONE;
+    if (inIndex >= inputs.length) return one;
     // ignore OP_CODESEPARATOR
     final ourScript = bscript.compile(bscript.decompile(prevOutScript).where((x) {
       return x != Opcodes.OP_CODESEPARATOR;
@@ -156,14 +155,14 @@ class Transaction {
       // SIGHASH_SINGLE: ignore all outputs, except at the same index?
     } else if ((hashType & 0x1f) == SIGHASH_SINGLE) {
       // https://github.com/bitcoin/bitcoin/blob/master/src/test/sighash_tests.cpp#L60
-      if (inIndex >= outputs.length) return ONE;
+      if (inIndex >= outputs.length) return one;
 
       // truncate outputs after
       txTmp.outputs.length = inIndex + 1;
 
       // "blank" outputs before
       for (var i = 0; i < inIndex; i++) {
-        txTmp.outputs[i] = BLANK_OUTPUT;
+        txTmp.outputs[i] = blankOutput;
       }
       // ignore sequence numbers (except at inIndex)
       for (var i = 0; i < txTmp.inputs.length; i++) {

@@ -16,6 +16,6 @@ class Bitbox {
   ///
   /// It is possible to call [TransactionBuilder] directly and pass [Network] parameter, this just makes it easier
   static TransactionBuilder transactionBuilder({testnet: false}) =>
-    TransactionBuilder(network: testnet ? Network.bitcoinCashTest() : Network.bitcoinCash());
+      TransactionBuilder(
+          network: testnet ? Network.bitcoinCashTest() : Network.bitcoinCash());
 }
-

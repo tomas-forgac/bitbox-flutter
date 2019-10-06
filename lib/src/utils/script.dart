@@ -5,8 +5,8 @@ import 'pushdata.dart' as pushData;
 import 'check_types.dart';
 //import 'check_types.dart';
 //Map<int, String> REVERSE_OPS = opcodes.map((String string, int number) => new MapEntry(number, string));
-final OP_INT_BASE = Opcodes.OP_RESERVED;
-final ZERO = Uint8List.fromList([0]);
+const OP_INT_BASE = Opcodes.OP_RESERVED;
+final zero = Uint8List.fromList([0]);
 
 Uint8List compile(List<dynamic> chunks) {
   final bufferSize = chunks.fold(0, (acc, chunk) {
@@ -193,9 +193,9 @@ Uint8List encodeSignature(Uint8List signature, int hashType) {
 Uint8List toDER (Uint8List x) {
   var i = 0;
   while (x[i] == 0) ++i;
-  if (i == x.length) return ZERO;
+  if (i == x.length) return zero;
   x = x.sublist(i);
-  List<int> combine = List.from(ZERO);
+  List<int> combine = List.from(zero);
   combine.addAll(x);
   if (x[0] & 0x80 != 0) return Uint8List.fromList(combine);
   return x;

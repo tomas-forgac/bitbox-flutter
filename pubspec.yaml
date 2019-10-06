@@ -1,8 +1,8 @@
 name: bitbox
-description: A new Flutter package project.
+description: "BITBOX SDK lite for Flutter: build native cross-platform mobile apps with Bitcoin Cash"
 version: 0.0.1
-author:
-homepage:
+author: Tomas Forgac <tomas@forgac.me>
+homepage: https://github.com/tomasforgacbch/bitbox-flutter
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -17,6 +17,7 @@ dependencies:
   hex: ^0.1.2
   bs58check: ^1.0.1
   fixnum: ^0.10.9
+  meta: ^1.1.6
 
 dev_dependencies:
   flutter_test:

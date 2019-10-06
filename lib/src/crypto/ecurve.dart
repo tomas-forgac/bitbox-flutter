@@ -8,12 +8,13 @@ class ECurve {
   static final secp256k1 = new ECCurve_secp256k1();
   static final n = secp256k1.n;
   static final G = secp256k1.G;
-  static final ZERO32 = Uint8List.fromList(List.generate(32, (index) => 0));
-  static final EC_GROUP_ORDER = HEX.decode("fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141");
-  static final EC_P = HEX.decode("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f");
+  static final zero32 = Uint8List.fromList(List.generate(32, (index) => 0));
+  static final ecGroupOrder = HEX.decode(
+      "fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141");
+  static final ecP = HEX.decode(
+      "fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f");
 
-
-  static Uint8List privateAdd (Uint8List d,Uint8List tweak) {
+  static Uint8List privateAdd(Uint8List d, Uint8List tweak) {
 //    if (!isPrivate(d)) throw new ArgumentError(THROW_BAD_PRIVATE);
 //    if (!isOrderScalar(tweak)) throw new ArgumentError(THROW_BAD_TWEAK);
     BigInt dd = decodeBigInt(d);
@@ -23,13 +24,13 @@ class ECurve {
     return dt;
   }
 
-  static bool isPrivate (Uint8List x) {
+  static bool isPrivate(Uint8List x) {
     if (!isScalar(x)) return false;
-    return _compare(x, ZERO32) > 0 && // > 0
-      _compare(x, EC_GROUP_ORDER) < 0; // < G
+    return _compare(x, zero32) > 0 && // > 0
+        _compare(x, ecGroupOrder) < 0; // < G
   }
 
-  static bool isScalar (Uint8List x) {
+  static bool isScalar(Uint8List x) {
     return x.length == 32;
   }
 
@@ -41,12 +42,13 @@ class ECurve {
     return pp.getEncoded(_compressed);
   }
 
-  static Uint8List pointAddScalar(Uint8List p,Uint8List tweak, bool _compressed) {
+  static Uint8List pointAddScalar(
+      Uint8List p, Uint8List tweak, bool _compressed) {
 //    if (!isPoint(p)) throw new ArgumentError(THROW_BAD_POINT);
 //    if (!isOrderScalar(tweak)) throw new ArgumentError(THROW_BAD_TWEAK);
     bool compressed = assumeCompression(_compressed, p);
     ECPoint pp = decodeFrom(p);
-    if (_compare(tweak, ZERO32) == 0) return pp.getEncoded(compressed);
+    if (_compare(tweak, zero32) == 0) return pp.getEncoded(compressed);
     BigInt tt = decodeBigInt(tweak);
     ECPoint qq = G * tt;
     ECPoint uu = pp + qq;
@@ -75,25 +77,25 @@ class ECurve {
     var t = p[0];
     var x = p.sublist(1, 33);
 
-    if (_compare(x, ZERO32) == 0) {
+    if (_compare(x, zero32) == 0) {
       return false;
     }
-    if (_compare(x, EC_P) == 1) {
+    if (_compare(x, ecP) == 1) {
       return false;
     }
     try {
       decodeFrom(p);
-    } catch(err) {
+    } catch (err) {
       return false;
     }
     if ((t == 0x02 || t == 0x03) && p.length == 33) {
       return true;
     }
     var y = p.sublist(33);
-    if (_compare(y, ZERO32) == 0) {
+    if (_compare(y, zero32) == 0) {
       return false;
     }
-    if (_compare(y, EC_P) == 1) {
+    if (_compare(y, ecP) == 1) {
       return false;
     }
     if (t == 0x04 && p.length == 65) {
@@ -102,7 +104,7 @@ class ECurve {
     return false;
   }
 
-  static bool _isPointCompressed (Uint8List p) {
+  static bool _isPointCompressed(Uint8List p) {
     return p[0] != 0x04;
   }
 

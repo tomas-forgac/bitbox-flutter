@@ -4,11 +4,7 @@ import 'utils/rest_api.dart';
 
 import 'package:bs58check/bs58check.dart' as bs58check;
 import 'utils/network.dart';
-import 'utils/opcodes.dart';
-import 'utils/script.dart' as bscript;
 import 'package:fixnum/fixnum.dart';
-
-import 'hdnode.dart';
 
 /// Works with both legacy and cashAddr formats of the address
 ///
@@ -158,6 +154,7 @@ class Address {
     return bs58check.encode(payload);
   }
 
+  /*
   static Uint8List _toOutputScript(address, network) {
     return bscript.compile([
       Opcodes.OP_DUP,
@@ -166,7 +163,7 @@ class Address {
       Opcodes.OP_EQUALVERIFY,
       Opcodes.OP_CHECKSIG
     ]);
-  }
+  }*/
 
   /// Encodes a hash from a given type into a Bitcoin Cash address with the given prefix.
   /// [prefix] - Network prefix. E.g.: 'bitcoincash'.
@@ -249,6 +246,8 @@ class Address {
       case 7:
         return 512;
     }
+
+    return -1;
   }
 
   /// Decodes the given address into:

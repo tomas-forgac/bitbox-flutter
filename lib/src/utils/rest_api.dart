@@ -20,7 +20,7 @@ class RestApi {
 
   static Future<dynamic> sendPostRequest(String path, String postKey, List<String> data, {String returnKey}) async {
     final response = await http.post(
-      "${_restUrl}$path",
+      "$_restUrl$path",
       headers: {"content-type": "application/json"},
       body: jsonEncode({"addresses" : data}),
     );

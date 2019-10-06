@@ -6,7 +6,14 @@ Works with mainnet and testnet.
 ## Getting Started
 
 ### 1) Depend on it
-After you download the repository, add a local dependency into the pubspec.yaml of your testing or development projet:
+If you just want to get this from Dart's public package directory:
+
+```
+dependencies:
+  bitbox: ^0.0.1
+```
+
+If you checked this out from Github, add a local dependency into the pubspec.yaml of your testing or development projet:
 
 ```
 dependencies:

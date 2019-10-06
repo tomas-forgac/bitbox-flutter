@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 import 'package:hex/hex.dart';
 import 'package:bs58check/bs58check.dart' as bs58check;
-import 'hdnode.dart';
 import 'address.dart';
 import 'crypto/crypto.dart';
 import 'utils/network.dart';
@@ -15,12 +14,12 @@ import 'bitcoincash.dart';
 /// Toolbox for creating a transaction, that can be broadcasted to BCH network. Works only as an instance created
 /// through one of the factories or a constructor
 class TransactionBuilder {
-  final DEFAULT_SEQUENCE = 0xffffffff;
-  final SIGHASH_ALL = 0x01;
-  final SIGHASH_NONE = 0x02;
-  final SIGHASH_SINGLE = 0x03;
-  final SIGHASH_ANYONECANPAY = 0x80;
-  final SIGHASH_BITCOINCASHBIP143 = 0x40;
+  static const DEFAULT_SEQUENCE = 0xffffffff;
+  static const SIGHASH_ALL = 0x01;
+  static const SIGHASH_NONE = 0x02;
+  static const SIGHASH_SINGLE = 0x03;
+  static const SIGHASH_ANYONECANPAY = 0x80;
+  static const SIGHASH_BITCOINCASHBIP143 = 0x40;
 
   final Network _network;
   final int _maximumFeeRate;
