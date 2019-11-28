@@ -16,17 +16,45 @@ class Address {
 
   static const _CHARSET = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l';
   static const _CHARSET_INVERSE_INDEX = {
-    'q': 0, 'p': 1, 'z': 2, 'r': 3, 'y': 4, '9': 5, 'x': 6, '8': 7,
-    'g': 8, 'f': 9, '2': 10, 't': 11, 'v': 12, 'd': 13, 'w': 14, '0': 15,
-    's': 16, '3': 17, 'j': 18, 'n': 19, '5': 20, '4': 21, 'k': 22, 'h': 23,
-    'c': 24, 'e': 25, '6': 26, 'm': 27, 'u': 28, 'a': 29, '7': 30, 'l': 31,
+    'q': 0,
+    'p': 1,
+    'z': 2,
+    'r': 3,
+    'y': 4,
+    '9': 5,
+    'x': 6,
+    '8': 7,
+    'g': 8,
+    'f': 9,
+    '2': 10,
+    't': 11,
+    'v': 12,
+    'd': 13,
+    'w': 14,
+    '0': 15,
+    's': 16,
+    '3': 17,
+    'j': 18,
+    'n': 19,
+    '5': 20,
+    '4': 21,
+    'k': 22,
+    'h': 23,
+    'c': 24,
+    'e': 25,
+    '6': 26,
+    'm': 27,
+    'u': 28,
+    'a': 29,
+    '7': 30,
+    'l': 31,
   };
 
   /// Returns information about the given Bitcoin Cash address.
   ///
   /// See https://developer.bitcoin.com/bitbox/docs/util for details about returned format
   static Future<Map<String, dynamic>> validateAddress(String address) async =>
-    await RestApi.sendGetRequest("util/validateAddress", address);
+      await RestApi.sendGetRequest("util/validateAddress", address);
 
   /// Returns details of the provided address or addresses
   ///
@@ -40,7 +68,7 @@ class Address {
   /// See https://developer.bitcoin.com/bitbox/docs/address#details for details about returned format. However
   /// note, that processing from array to map is done on the library side
   static Future<dynamic> details(addresses, [returnAsMap = false]) async =>
-    await _sendRequest("details", addresses, returnAsMap);
+      await _sendRequest("details", addresses, returnAsMap);
 
   /// Returns list of unconfirmed transactions
   ///
@@ -53,7 +81,8 @@ class Address {
   ///
   /// See https://developer.bitcoin.com/bitbox/docs/address#unconfirmed for details about the returned format. However
   /// note, that processing from array to map is done on the library side
-  static Future<dynamic> getUnconfirmed(addresses, [returnAsMap = false]) async {
+  static Future<dynamic> getUnconfirmed(addresses,
+      [returnAsMap = false]) async {
     final result = await _sendRequest("unconfirmed", addresses);
 
     if (result is Map) {
@@ -64,9 +93,11 @@ class Address {
 
       result.forEach((addressUtxoMap) {
         if (returnAsMap) {
-          returnMap[addressUtxoMap["cashAddr"]] = Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
+          returnMap[addressUtxoMap["cashAddr"]] =
+              Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
         } else {
-          addressUtxoMap["utxos"] = Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
+          addressUtxoMap["utxos"] =
+              Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
           returnList.add(addressUtxoMap);
         }
       });
@@ -95,9 +126,11 @@ class Address {
 
       result.forEach((addressUtxoMap) {
         if (returnAsMap) {
-          returnMap[addressUtxoMap["cashAddress"]] = Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
+          returnMap[addressUtxoMap["cashAddress"]] =
+              Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
         } else {
-          addressUtxoMap["utxos"] = Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
+          addressUtxoMap["utxos"] =
+              Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
           returnList.add(addressUtxoMap);
         }
       });
@@ -109,15 +142,16 @@ class Address {
   }
 
   /// Converts legacy address to cash address
-  static String toCashAddress(String legacyAddress, [bool includePrefix = true]) {
+  static String toCashAddress(String legacyAddress,
+      [bool includePrefix = true]) {
     final decoded = Address._decodeLegacyAddress(legacyAddress);
     String prefix = "";
     if (includePrefix) {
       switch (decoded["version"]) {
-        case Network.bchPublic :
+        case Network.bchPublic:
           prefix = "bitcoincash";
           break;
-        case Network.bchTestnetPublic :
+        case Network.bchTestnetPublic:
           prefix = "bchtest";
           break;
         default:
@@ -172,7 +206,8 @@ class Address {
   static _encode(String prefix, String type, Uint8List hash) {
     final prefixData = _prefixToUint5List(prefix) + Uint8List(1);
     final versionByte = _getHashSizeBits(hash);
-    final payloadData = _convertBits(Uint8List.fromList([versionByte] + hash), 8, 5);
+    final payloadData =
+        _convertBits(Uint8List.fromList([versionByte] + hash), 8, 5);
     final checksumData = prefixData + payloadData + Uint8List(8);
     final payload = payloadData + _checksumToUint5Array(_polymod(checksumData));
     return "$prefix:" + _base32Encode(payload);
@@ -180,14 +215,16 @@ class Address {
 
   /// Helper method for sending generic requests to Bitbox API. Accepts [String] or [List] of Strings and optionally
   /// converts the List returned by Bitbox into [Map], which uses cashAddress as a key
-  static Future<dynamic> _sendRequest(String path, dynamic addresses, [bool returnAsMap = false]) async {
+  static Future<dynamic> _sendRequest(String path, dynamic addresses,
+      [bool returnAsMap = false]) async {
     assert(addresses is String || addresses is List<String>);
 
     if (addresses is String) {
       return await RestApi.sendGetRequest("address/$path", addresses) as Map;
     } else if (addresses is List<String>) {
-      return await RestApi.sendPostRequest("address/$path", "addresses", addresses,
-        returnKey: returnAsMap ? "cashAddress" : null);
+      return await RestApi.sendPostRequest(
+          "address/$path", "addresses", addresses,
+          returnKey: returnAsMap ? "cashAddress" : null);
     } else {
       throw TypeError();
     }
@@ -274,7 +311,7 @@ class Address {
     return <String, dynamic>{
       "version": buffer.first,
       "hash": buffer.sublist(1),
-      "format" : formatLegacy,
+      "format": formatLegacy,
     };
   }
 
@@ -316,7 +353,8 @@ class Address {
         continue;
       }
 
-      final payloadData = _fromUint5Array(payload.sublist(0, payload.length - 8));
+      final payloadData =
+          _fromUint5Array(payload.sublist(0, payload.length - 8));
       final hash = payloadData.sublist(1);
 
       if (_getHashSize(payloadData[0]) != hash.length * 8) {
@@ -327,9 +365,9 @@ class Address {
       // If the loop got all the way here, it means validations went through and the address was decoded.
       // Return the decoded data
       return <String, dynamic>{
-        "prefix"  : prefixes[i],
-        "hash"    : hash,
-        "format"  : formatCashAddr
+        "prefix": prefixes[i],
+        "hash": hash,
+        "format": formatCashAddr
       };
     }
 
@@ -357,8 +395,11 @@ class Address {
 
   /// Converts a list of integers made up of 'from' bits into an  array of integers made up of 'to' bits.
   /// The output array is zero-padded if necessary, unless strict mode is true.
-  static Uint8List _convertBits(List data, int from, int to, [bool strictMode = false]) {
-    final length = strictMode ? (data.length * from / to).floor() : (data.length * from / to).ceil();
+  static Uint8List _convertBits(List data, int from, int to,
+      [bool strictMode = false]) {
+    final length = strictMode
+        ? (data.length * from / to).floor()
+        : (data.length * from / to).ceil();
     int mask = (1 << to) - 1;
     var result = Uint8List(length);
     int index = 0;
@@ -382,7 +423,8 @@ class Address {
       }
     } else {
       if (bits < from && ((accumulator << (to - bits)) & mask).toInt() != 0) {
-        throw FormatException("Input cannot be converted to $to bits without padding, but strict mode was used.");
+        throw FormatException(
+            "Input cannot be converted to $to bits without padding, but strict mode was used.");
       }
     }
     return result;
@@ -391,7 +433,13 @@ class Address {
   /// Computes a checksum from the given input data as specified for the CashAddr format:
   // https://github.com/Bitcoin-UAHF/spec/blob/master/cashaddr.md.
   static int _polymod(List data) {
-    const GENERATOR = [0x98f2bc8e61, 0x79b76d99e2, 0xf33e5fb3c4, 0xae2eabe2a8, 0x1e4f43e470];
+    const GENERATOR = [
+      0x98f2bc8e61,
+      0x79b76d99e2,
+      0xf33e5fb3c4,
+      0xae2eabe2a8,
+      0x1e4f43e470
+    ];
 
     int checksum = 1;
 
@@ -414,7 +462,8 @@ class Address {
     final data = Uint8List(string.length);
     for (int i = 0; i < string.length; i++) {
       final value = string[i];
-      if (!_CHARSET_INVERSE_INDEX.containsKey(value)) throw FormatException("Invalid character '$value'");
+      if (!_CHARSET_INVERSE_INDEX.containsKey(value))
+        throw FormatException("Invalid character '$value'");
       data[i] = _CHARSET_INVERSE_INDEX[string[i]];
     }
 
@@ -452,16 +501,17 @@ class Utxo {
   final int height;
   final int confirmations;
 
-  Utxo(this.txid, this.vout, this.amount, this.satoshis, this.height, this.confirmations);
+  Utxo(this.txid, this.vout, this.amount, this.satoshis, this.height,
+      this.confirmations);
 
   /// Create [Utxo] instance from utxo [Map]
-  Utxo.fromMap(Map<String, dynamic> utxoMap) :
-    this.txid = utxoMap['txid'],
-    this.vout = utxoMap['vout'],
-    this.amount = utxoMap['amount'],
-    this.satoshis = utxoMap['satoshis'],
-    this.height = utxoMap.containsKey('height') ? utxoMap['height'] : null,
-    this.confirmations = utxoMap['confirmations'];
+  Utxo.fromMap(Map<String, dynamic> utxoMap)
+      : this.txid = utxoMap['txid'],
+        this.vout = utxoMap['vout'],
+        this.amount = utxoMap['amount'],
+        this.satoshis = utxoMap['satoshis'],
+        this.height = utxoMap.containsKey('height') ? utxoMap['height'] : null,
+        this.confirmations = utxoMap['confirmations'];
 
   /// Converts List of utxo maps into a list of [Utxo] objects
   static List<Utxo> convertMapListToUtxos(List utxoMapList) {
@@ -475,11 +525,11 @@ class Utxo {
 
   @override
   String toString() => jsonEncode({
-    "txid": txid,
-    "vout": vout,
-    "amount": amount,
-    "satoshis": satoshis,
-    "height": height,
-    "confirmations" : confirmations
-  });
+        "txid": txid,
+        "vout": vout,
+        "amount": amount,
+        "satoshis": satoshis,
+        "height": height,
+        "confirmations": confirmations
+      });
 }
