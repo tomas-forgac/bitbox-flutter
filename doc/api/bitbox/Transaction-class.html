@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -69,6 +69,7 @@
     
     
     
+    
       <li class="section-title"><a href="bitbox/bitbox-library.html#functions">Functions</a></li>
       <li><a href="bitbox/decode.html">decode</a></li>
       <li><a href="bitbox/encode.html">encode</a></li>
@@ -97,7 +98,7 @@ and updated to work with BCH</p>
 
       <dl class="constructor-summary-list">
         <dt id="Transaction" class="callable">
-          <span class="name"><a href="bitbox/Transaction/Transaction.html">Transaction</a></span><span class="signature">([<span class="parameter" id="-param-version"><span class="type-annotation">dynamic</span> <span class="parameter-name">version</span> = <span class="default-value">2</span>, </span> <span class="parameter" id="-param-locktime"><span class="type-annotation">dynamic</span> <span class="parameter-name">locktime</span> = <span class="default-value">0</span>, </span> <span class="parameter" id="-param-ins"><span class="type-annotation">dynamic</span> <span class="parameter-name">ins</span>, </span> <span class="parameter" id="-param-outs"><span class="type-annotation">dynamic</span> <span class="parameter-name">outs</span></span> ])</span>
+          <span class="name"><a href="bitbox/Transaction/Transaction.html">Transaction</a></span><span class="signature">([<span class="parameter" id="-param-version"><span class="type-annotation">dynamic</span> <span class="parameter-name">version</span> = <span class="default-value">2</span></span> <span class="parameter" id="-param-locktime"><span class="type-annotation">dynamic</span> <span class="parameter-name">locktime</span> = <span class="default-value">0</span></span> <span class="parameter" id="-param-ins"><span class="type-annotation">dynamic</span> <span class="parameter-name">ins</span></span> <span class="parameter" id="-param-outs"><span class="type-annotation">dynamic</span> <span class="parameter-name">outs</span></span> ])</span>
         </dt>
         <dd>
           If <a href="bitbox/Transaction/inputs.html">inputs</a> or <a href="bitbox/Transaction/outputs.html">outputs</a> are not defined, empty lists are created for each
@@ -221,7 +222,7 @@ and updated to work with BCH</p>
                   
 </dd>
         <dt id="hashForCashSignature" class="callable">
-          <span class="name"><a href="bitbox/Transaction/hashForCashSignature.html">hashForCashSignature</a></span><span class="signature">(<wbr><span class="parameter" id="hashForCashSignature-param-inIndex"><span class="type-annotation">int</span> <span class="parameter-name">inIndex</span>, </span> <span class="parameter" id="hashForCashSignature-param-prevOutScript"><span class="type-annotation">Uint8List</span> <span class="parameter-name">prevOutScript</span>, </span> <span class="parameter" id="hashForCashSignature-param-amount"><span class="type-annotation">int</span> <span class="parameter-name">amount</span>, </span> <span class="parameter" id="hashForCashSignature-param-hashType"><span class="type-annotation">int</span> <span class="parameter-name">hashType</span></span>)
+          <span class="name"><a href="bitbox/Transaction/hashForCashSignature.html">hashForCashSignature</a></span><span class="signature">(<wbr><span class="parameter" id="hashForCashSignature-param-inIndex"><span class="type-annotation">int</span> <span class="parameter-name">inIndex</span></span> <span class="parameter" id="hashForCashSignature-param-prevOutScript"><span class="type-annotation">Uint8List</span> <span class="parameter-name">prevOutScript</span>, </span> <span class="parameter" id="hashForCashSignature-param-amount"><span class="type-annotation">int</span> <span class="parameter-name">amount</span></span> <span class="parameter" id="hashForCashSignature-param-hashType"><span class="type-annotation">int</span> <span class="parameter-name">hashType</span></span>)
             <span class="returntype parameter">&#8594; dynamic</span>
           </span>
                   </dt>
@@ -231,7 +232,7 @@ legacy signature <a href="bitbox/Transaction/hashForCashSignature.html">[...]</a
                   
 </dd>
         <dt id="hashForSignature" class="callable">
-          <span class="name"><a href="bitbox/Transaction/hashForSignature.html">hashForSignature</a></span><span class="signature">(<wbr><span class="parameter" id="hashForSignature-param-inIndex"><span class="type-annotation">int</span> <span class="parameter-name">inIndex</span>, </span> <span class="parameter" id="hashForSignature-param-prevOutScript"><span class="type-annotation">Uint8List</span> <span class="parameter-name">prevOutScript</span>, </span> <span class="parameter" id="hashForSignature-param-hashType"><span class="type-annotation">int</span> <span class="parameter-name">hashType</span></span>)
+          <span class="name"><a href="bitbox/Transaction/hashForSignature.html">hashForSignature</a></span><span class="signature">(<wbr><span class="parameter" id="hashForSignature-param-inIndex"><span class="type-annotation">int</span> <span class="parameter-name">inIndex</span></span> <span class="parameter" id="hashForSignature-param-prevOutScript"><span class="type-annotation">Uint8List</span> <span class="parameter-name">prevOutScript</span>, </span> <span class="parameter" id="hashForSignature-param-hashType"><span class="type-annotation">int</span> <span class="parameter-name">hashType</span></span>)
             <span class="returntype parameter">&#8594; dynamic</span>
           </span>
                   </dt>
@@ -333,40 +334,40 @@ legacy signature <a href="bitbox/Transaction/hashForCashSignature.html">[...]</a
       <h2>Static Properties</h2>
 
       <dl class="properties">
-        <dt id="BLANK_OUTPUT" class="property">
-          <span class="name"><a href="bitbox/Transaction/BLANK_OUTPUT.html">BLANK_OUTPUT</a></span>
+        <dt id="blankOutput" class="property">
+          <span class="name"><a href="bitbox/Transaction/blankOutput.html">blankOutput</a></span>
           <span class="signature">&#8594; <a href="bitbox/Output-class.html">Output</a></span>         
         </dt>
         <dd>
           
                   <div class="features">final</div>
 </dd>
-        <dt id="EMPTY_SCRIPT" class="property">
-          <span class="name"><a href="bitbox/Transaction/EMPTY_SCRIPT.html">EMPTY_SCRIPT</a></span>
+        <dt id="emptyScript" class="property">
+          <span class="name"><a href="bitbox/Transaction/emptyScript.html">emptyScript</a></span>
           <span class="signature">&#8594; Uint8List</span>         
         </dt>
         <dd>
           
                   <div class="features">final</div>
 </dd>
-        <dt id="ONE" class="property">
-          <span class="name"><a href="bitbox/Transaction/ONE.html">ONE</a></span>
+        <dt id="one" class="property">
+          <span class="name"><a href="bitbox/Transaction/one.html">one</a></span>
           <span class="signature">&#8594; List<span class="signature">&lt;<wbr><span class="type-parameter">int</span>&gt;</span></span>         
         </dt>
         <dd>
           
                   <div class="features">final</div>
 </dd>
-        <dt id="VALUE_UINT64_MAX" class="property">
-          <span class="name"><a href="bitbox/Transaction/VALUE_UINT64_MAX.html">VALUE_UINT64_MAX</a></span>
+        <dt id="valueUint64Max" class="property">
+          <span class="name"><a href="bitbox/Transaction/valueUint64Max.html">valueUint64Max</a></span>
           <span class="signature">&#8594; List<span class="signature">&lt;<wbr><span class="type-parameter">int</span>&gt;</span></span>         
         </dt>
         <dd>
           
                   <div class="features">final</div>
 </dd>
-        <dt id="ZERO" class="property">
-          <span class="name"><a href="bitbox/Transaction/ZERO.html">ZERO</a></span>
+        <dt id="zero" class="property">
+          <span class="name"><a href="bitbox/Transaction/zero.html">zero</a></span>
           <span class="signature">&#8594; List<span class="signature">&lt;<wbr><span class="type-parameter">int</span>&gt;</span></span>         
         </dt>
         <dd>
@@ -487,6 +488,7 @@ legacy signature <a href="bitbox/Transaction/hashForCashSignature.html">[...]</a
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
+    
       <li class="section-title"><a href="bitbox/Transaction-class.html#constructors">Constructors</a></li>
       <li><a href="bitbox/Transaction/Transaction.html">Transaction</a></li>
       <li><a href="bitbox/Transaction/Transaction.clone.html">clone</a></li>
@@ -523,11 +525,11 @@ legacy signature <a href="bitbox/Transaction/hashForCashSignature.html">[...]</a
       <li class="inherited"><a href="bitbox/Transaction/operator_equals.html">operator ==</a></li>
     
       <li class="section-title"><a href="bitbox/Transaction-class.html#static-properties">Static properties</a></li>
-      <li><a href="bitbox/Transaction/BLANK_OUTPUT.html">BLANK_OUTPUT</a></li>
-      <li><a href="bitbox/Transaction/EMPTY_SCRIPT.html">EMPTY_SCRIPT</a></li>
-      <li><a href="bitbox/Transaction/ONE.html">ONE</a></li>
-      <li><a href="bitbox/Transaction/VALUE_UINT64_MAX.html">VALUE_UINT64_MAX</a></li>
-      <li><a href="bitbox/Transaction/ZERO.html">ZERO</a></li>
+      <li><a href="bitbox/Transaction/blankOutput.html">blankOutput</a></li>
+      <li><a href="bitbox/Transaction/emptyScript.html">emptyScript</a></li>
+      <li><a href="bitbox/Transaction/one.html">one</a></li>
+      <li><a href="bitbox/Transaction/valueUint64Max.html">valueUint64Max</a></li>
+      <li><a href="bitbox/Transaction/zero.html">zero</a></li>
     
     
       <li class="section-title"><a href="bitbox/Transaction-class.html#constants">Constants</a></li>
@@ -540,6 +542,7 @@ legacy signature <a href="bitbox/Transaction/hashForCashSignature.html">[...]</a
       <li><a href="bitbox/Transaction/SIGHASH_BITCOINCASHBIP143-constant.html">SIGHASH_BITCOINCASHBIP143</a></li>
       <li><a href="bitbox/Transaction/SIGHASH_NONE-constant.html">SIGHASH_NONE</a></li>
       <li><a href="bitbox/Transaction/SIGHASH_SINGLE-constant.html">SIGHASH_SINGLE</a></li>
+    
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -547,10 +550,11 @@ legacy signature <a href="bitbox/Transaction/hashForCashSignature.html">[...]</a
 
 <footer>
   <span class="no-break">
-    bitbox 0.0.1
+    bitbox
+      0.0.2
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -558,7 +562,7 @@ legacy signature <a href="bitbox/Transaction/hashForCashSignature.html">[...]</a
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

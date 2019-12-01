@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="generator" content="made with love by dartdoc 0.28.2">
+  <meta name="generator" content="made with love by dartdoc 0.28.6">
   <meta name="description" content="bitbox API docs, for the Dart programming language.">
   <title>bitbox - Dart API docs</title>
 
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -23,7 +23,7 @@
 <header id="title">
   <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
-    <li class="self-crumb">bitbox package</li>
+    <li><a href="https://github.com/tomasforgacbch/bitbox-flutter">bitbox package</a></li>
   </ol>
   <div class="self-name">bitbox</div>
   <form class="search navbar-right" role="search">
@@ -41,7 +41,7 @@
     </header>
     
     <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-      <li class="self-crumb">bitbox package</li>
+      <li><a href="https://github.com/tomasforgacbch/bitbox-flutter">bitbox package</a></li>
     </ol>
     
     <h5 class="hidden-xs"><span class="package-name">bitbox</span> <span class="package-kind">package</span></h5>
@@ -54,11 +54,15 @@
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
       <section class="desc markdown">
         <h1 id="bitbox-lite">Bitbox lite</h1>
-<p>Lite version of <a href="https://developer.bitcoin.com/bitbox/">Bitcoin.com's Bitbox JS library</a> built for Flutter and with integration to Bitcoin.com's REST API.
+<p>Lite version of <a href="https://developer.bitcoin.com/bitbox/">Bitcoin.com's Bitbox JS library</a> for building Bitcoin Cash apps in Flutter. Integrated to Bitcoin.com's REST API.
 Works with mainnet and testnet.</p>
 <h2 id="getting-started">Getting Started</h2>
 <h3 id="1-depend-on-it">1) Depend on it</h3>
-<p>After you download the repository, add a local dependency into the pubspec.yaml of your testing or development projet:</p>
+<p>If you just want to get this from Dart's public package directory:</p>
+<pre class="language-dart"><code>dependencies:
+  bitbox: ^0.0.1
+</code></pre>
+<p>If you checked this out from Github, add a local dependency into the pubspec.yaml of your testing or development projet:</p>
 <pre class="language-dart"><code>dependencies:
   bitbox_plugin:
     path: &lt;path to the directory&gt;/
@@ -183,11 +187,27 @@ if (addressDetails["balance"] &gt; 0) {
 <p>For further documentation, refer to apidoc of this repository</p>
 <h2 id="testing">Testing</h2>
 <p>There are some unit tests in test/bitbox_test.dart. They use data generated from the original <a href="https://developer.bitcoin.com/bitbox/">Bitbox for JS</a> and compare them with the output of this library. 
-The following is tested for both testnet and mainnet:</p><ul><li>Generating the master node from mnemonic and comparing both its XPub and XPriv</li><li>Generating an account node and comparing XPub and XPriv</li><li>Generating 10 test childs and comparing their private keys and addresses</li><li>Conversion of cashAddr format to legacy and vice versa</li><li>Fetching address details for the rest API</li><li>Fetching utxos for addresses with balance</li><li>Building a transaction spending the deposited balance and comparing its hash with Bitbox JS output</li><li>Optionally broadcasting the transaction and</li></ul>
-<p>To run the test:</p><ol><li>Generate the testing data by runing create_test_data.js with your local nodeJS engine</li><li>Update bitbox_test.dart with the path to the generated test_data.json file</li><li>Run bitbox_test.dart 
-Optionally between step 1) and 2), send some balance to either testnet or mainnet addresses (or both), wait for confirmations and run create_test_data.js again to update the data and generate testing transactions</li></ol>
+The following is tested for both testnet and mainnet:</p>
+<ul>
+<li>Generating the master node from mnemonic and comparing both its XPub and XPriv</li>
+<li>Generating an account node and comparing XPub and XPriv</li>
+<li>Generating 10 test childs and comparing their private keys and addresses</li>
+<li>Conversion of cashAddr format to legacy and vice versa</li>
+<li>Fetching address details for the rest API</li>
+<li>Fetching utxos for addresses with balance</li>
+<li>Building a transaction spending the deposited balance and comparing its hash with Bitbox JS output</li>
+<li>Optionally broadcasting the transaction and</li>
+</ul>
+<p>To run the test:</p>
+<ol>
+<li>Copy create_test_data.js to a separate directory and download the original Bitbox JS into the directory</li>
+<li>Generate the testing data by runing create_test_data.js with your local nodeJS engine</li>
+<li>Update bitbox_test.dart with the path to the generated test_data.json file</li>
+<li>Run bitbox_test.dart 
+Optionally between step 1) and 2), send some balance to either testnet or mainnet addresses (or both), wait for confirmations and run create_test_data.js again to update the data and generate testing transactions</li>
+</ol>
 <h2 id="acknowledgments">Acknowledgments</h2>
-<p>This is a port of the original JS-based Bitbox library by Gabriel Cordana and Bitcoin.com, so first of all huge thanks to Gabriel and the whole Bitcoin.com team for doing so much for the BCH ecosystem.</p>
+<p>This is a port of the original JS-based Bitbox library by Gabriel Cardona and Bitcoin.com, so first of all huge thanks to Gabriel and the whole Bitcoin.com team for doing so much for the BCH ecosystem.</p>
 <p>Also I either re-used a lot of code originally wrote for Bitcoin or called some libraries (bip39 and bip32) by <a href="https://github.com/anicdh">anicdh</a>, so Thanks big time to him. Without that it would take me many more weeks!</p>
       </section>
       
@@ -211,10 +231,11 @@ Optionally between step 1) and 2), send some balance to either testnet or mainne
 
 <footer>
   <span class="no-break">
-    bitbox 0.0.1
+    bitbox
+      0.0.2
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -222,7 +243,7 @@ Optionally between step 1) and 2), send some balance to either testnet or mainne
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

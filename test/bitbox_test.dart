@@ -297,4 +297,26 @@ void main() {
       }
     }
   });
+  
+  test('BIP21 test', () {
+    final address = 'bitcoincash:qrdsfshx7yzfjl9sfj2khuja5crcu4vaxqrt2qkz5s';
+
+    final options = {
+      "amount": 1.0,
+      "label": '#BCHForEveryone',
+      "message": "There you go"
+    };
+
+    final encodedPaymentRequest = "bitcoincash:qrdsfshx7yzfjl9sfj2khuja5crcu4vaxqrt2qkz5s?"
+      +"amount=1.0&label=%23BCHForEveryone&message=There%20you%20go";
+
+    expect(Bitbox.BitcoinCash.encodeBIP21(address, options), encodedPaymentRequest);
+
+    final decodedPaymentRequest = Bitbox.BitcoinCash.decodeBIP21(encodedPaymentRequest);
+
+    expect(decodedPaymentRequest["address"], address);
+    expect(decodedPaymentRequest["options"]["amount"], options["amount"]);
+    expect(decodedPaymentRequest["options"]["label"], options["label"]);
+    expect(decodedPaymentRequest["options"]["message"], options["message"]);
+  });
 }

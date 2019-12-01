@@ -1,6 +1,6 @@
 name: bitbox
 description: "BITBOX SDK lite for Flutter: build native cross-platform mobile apps with Bitcoin Cash"
-version: 0.0.1
+version: 0.0.2
 author: Tomas Forgac <tomas@forgac.me>
 homepage: https://github.com/tomasforgacbch/bitbox-flutter
 

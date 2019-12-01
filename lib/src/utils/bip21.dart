@@ -1,4 +1,7 @@
+import 'package:bitbox/bitbox.dart';
+
 class Bip21 {
+
   static Map<String, dynamic> decode(String uri) {
     if (uri.indexOf('bitcoincash') != 0 || uri['bitcoincash'.length] != ":")
       throw ("Invalid BIP21 URI");
@@ -32,9 +35,16 @@ class Bip21 {
   }
 
   static String encode(String address, Map<String, dynamic> options) {
-    var isCashAddress = address.startsWith('bitcoincash:');
-    if (!isCashAddress) {
+    var hasCashPrefix = address.startsWith('bitcoincash:');
+    if (!hasCashPrefix) {
       address = 'bitcoincash:$address';
+    }
+
+    // Using toLegacyAddress method to test validity of the address format
+    try {
+      Address.toLegacyAddress(address);
+    } catch (e) {
+      throw FormatException("Invalid Address Format: $address");
     }
 
     String query = "";
@@ -44,7 +54,7 @@ class Bip21 {
         if (options['amount'] < 0) throw ("Invalid amount: not positive");
       }
 
-      Map<String, dynamic> uriOptions = options;
+      Map<String, dynamic> uriOptions = Map.from(options);
       uriOptions.removeWhere((key, value) => value == null);
       uriOptions.forEach((key, value) {
         uriOptions[key] = value.toString();

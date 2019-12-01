@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,36 +53,39 @@
     
     <h5>Address class</h5>
     <ol>
-      <li class="section-title"><a href="bitbox/Address-class.html#constructors">Constructors</a></li>
-      <li><a href="bitbox/Address/Address.html">Address</a></li>
     
-      <li class="section-title inherited">
-        <a href="bitbox/Address-class.html#instance-properties">Properties</a>
-      </li>
-      <li class="inherited"><a href="bitbox/Address/hashCode.html">hashCode</a></li>
-      <li class="inherited"><a href="bitbox/Address/runtimeType.html">runtimeType</a></li>
+        <li class="section-title"><a href="bitbox/Address-class.html#constructors">Constructors</a></li>
+        <li><a href="bitbox/Address/Address.html">Address</a></li>
     
-      <li class="section-title inherited"><a href="bitbox/Address-class.html#instance-methods">Methods</a></li>
-      <li class="inherited"><a href="bitbox/Address/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="bitbox/Address/toString.html">toString</a></li>
+        <li class="section-title inherited">
+            <a href="bitbox/Address-class.html#instance-properties">Properties</a>
+        </li>
+        <li class="inherited"><a href="bitbox/Address/hashCode.html">hashCode</a></li>
+        <li class="inherited"><a href="bitbox/Address/runtimeType.html">runtimeType</a></li>
     
-      <li class="section-title inherited"><a href="bitbox/Address-class.html#operators">Operators</a></li>
-      <li class="inherited"><a href="bitbox/Address/operator_equals.html">operator ==</a></li>
+        <li class="section-title inherited"><a href="bitbox/Address-class.html#instance-methods">Methods</a></li>
+        <li class="inherited"><a href="bitbox/Address/noSuchMethod.html">noSuchMethod</a></li>
+        <li class="inherited"><a href="bitbox/Address/toString.html">toString</a></li>
+    
+        <li class="section-title inherited"><a href="bitbox/Address-class.html#operators">Operators</a></li>
+        <li class="inherited"><a href="bitbox/Address/operator_equals.html">operator ==</a></li>
     
     
-      <li class="section-title"><a href="bitbox/Address-class.html#static-methods">Static methods</a></li>
-      <li><a href="bitbox/Address/details.html">details</a></li>
-      <li><a href="bitbox/Address/detectFormat.html">detectFormat</a></li>
-      <li><a href="bitbox/Address/getUnconfirmed.html">getUnconfirmed</a></li>
-      <li><a href="bitbox/Address/toBase58Check.html">toBase58Check</a></li>
-      <li><a href="bitbox/Address/toCashAddress.html">toCashAddress</a></li>
-      <li><a href="bitbox/Address/toLegacyAddress.html">toLegacyAddress</a></li>
-      <li><a href="bitbox/Address/utxo.html">utxo</a></li>
-      <li><a href="bitbox/Address/validateAddress.html">validateAddress</a></li>
+        <li class="section-title"><a href="bitbox/Address-class.html#static-methods">Static methods</a></li>
+        <li><a href="bitbox/Address/details.html">details</a></li>
+        <li><a href="bitbox/Address/detectFormat.html">detectFormat</a></li>
+        <li><a href="bitbox/Address/getUnconfirmed.html">getUnconfirmed</a></li>
+        <li><a href="bitbox/Address/toBase58Check.html">toBase58Check</a></li>
+        <li><a href="bitbox/Address/toCashAddress.html">toCashAddress</a></li>
+        <li><a href="bitbox/Address/toLegacyAddress.html">toLegacyAddress</a></li>
+        <li><a href="bitbox/Address/utxo.html">utxo</a></li>
+        <li><a href="bitbox/Address/validateAddress.html">validateAddress</a></li>
     
-      <li class="section-title"><a href="bitbox/Address-class.html#constants">Constants</a></li>
-      <li><a href="bitbox/Address/formatCashAddr-constant.html">formatCashAddr</a></li>
-      <li><a href="bitbox/Address/formatLegacy-constant.html">formatLegacy</a></li>
+        <li class="section-title"><a href="bitbox/Address-class.html#constants">Constants</a></li>
+        <li><a href="bitbox/Address/formatCashAddr-constant.html">formatCashAddr</a></li>
+        <li><a href="bitbox/Address/formatLegacy-constant.html">formatLegacy</a></li>
+    
+    
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -96,9 +99,15 @@
       
     </section>
     <section class="desc markdown">
-      <p>Returns details of the provided address or addresses</p><ul><li>If <code>addresses</code> is <code>String</code>, it will return <code>Map</code> with address details.</li><li>If <code>addresses</code> is <code>List</code> of Strings and <code>returnAsMap</code> is true, it will return <code>Map</code> with cashAddress used as keys
-and <code>Map</code> with address details in values.</li><li>If <code>addresses</code> is <code>List</code> of Strings and <code>returnAsMap</code> is false, it will return <code>List</code> with address details sorted
-in the same order as the addresses provided.</li><li>Otherwise it will throw <code>FormatException</code></li></ul>
+      <p>Returns details of the provided address or addresses</p>
+<ul>
+<li>If <code>addresses</code> is <code>String</code>, it will return <code>Map</code> with address details.</li>
+<li>If <code>addresses</code> is <code>List</code> of Strings and <code>returnAsMap</code> is true, it will return <code>Map</code> with cashAddress used as keys
+and <code>Map</code> with address details in values.</li>
+<li>If <code>addresses</code> is <code>List</code> of Strings and <code>returnAsMap</code> is false, it will return <code>List</code> with address details sorted
+in the same order as the addresses provided.</li>
+<li>Otherwise it will throw <code>FormatException</code></li>
+</ul>
 <p>See <a href="https://developer.bitcoin.com/bitbox/docs/address#details">https://developer.bitcoin.com/bitbox/docs/address#details</a> for details about returned format. However
 note, that processing from array to map is done on the library side</p>
     </section>
@@ -106,7 +115,7 @@ note, that processing from array to map is done on the library side</p>
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">static Future&lt;dynamic&gt; details(addresses, [returnAsMap = false]) async =&gt;
-  await _sendRequest(&quot;details&quot;, addresses, returnAsMap);</code></pre>
+    await _sendRequest(&quot;details&quot;, addresses, returnAsMap);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -118,10 +127,11 @@ note, that processing from array to map is done on the library side</p>
 
 <footer>
   <span class="no-break">
-    bitbox 0.0.1
+    bitbox
+      0.0.2
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -129,7 +139,7 @@ note, that processing from array to map is done on the library side</p>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 
