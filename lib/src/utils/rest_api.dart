@@ -32,20 +32,21 @@ class RestApi {
     if (returnKey == null) {
       return jsonDecode(response.body);
     } else {
-      final responseData = jsonDecode(response.body);
+      final responseData = jsonDecode(response.body) as List;
 
-      if (!responseData is List || !responseData.first is Map) {
+      if (!(responseData is List) || !(responseData.first is Map)) {
         throw FormatException("return data (below) is not List of Maps: \n${response.body}");
       }
 
       Map<String, dynamic> returnMap = <String, dynamic>{};
 
-      responseData.forEach((Map item) {
+      for (int i = 0; i < responseData.length; i++) {
+        final item = responseData[i];
         if (!item.containsKey(returnKey)) {
           throw FormatException("return data (below) doesn't contain key $returnKey: $item");
         }
         returnMap[item[returnKey]] = item;
-      });
+      }
 
       return returnMap;
     }
