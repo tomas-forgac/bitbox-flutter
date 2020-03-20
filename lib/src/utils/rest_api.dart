@@ -18,11 +18,11 @@ class RestApi {
     }
   }
 
-  static Future<dynamic> sendPostRequest(String path, String postKey, List<String> data, {String returnKey}) async {
+  static sendPostRequest(String path, String postKey, List<String> data, {String returnKey}) async {
     final response = await http.post(
       "$_restUrl$path",
       headers: {"content-type": "application/json"},
-      body: jsonEncode({"addresses" : data}),
+      body: jsonEncode({postKey : data}),
     );
 
     if (response.statusCode != 200) {
@@ -38,10 +38,10 @@ class RestApi {
         throw FormatException("return data (below) is not List of Maps: \n${response.body}");
       }
 
-      Map<String, dynamic> returnMap = <String, dynamic>{};
+      Map<String, dynamic> returnMap = <String, Map>{};
 
       for (int i = 0; i < responseData.length; i++) {
-        final item = responseData[i];
+        final item = responseData[i] as Map;
         if (!item.containsKey(returnKey)) {
           throw FormatException("return data (below) doesn't contain key $returnKey: $item");
         }

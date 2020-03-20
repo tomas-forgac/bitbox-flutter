@@ -36,8 +36,7 @@ class ECPair {
         throw ArgumentError("Unknown network version");
       }
     }
-    return ECPair.fromPrivateKey(decoded.privateKey,
-      compressed: decoded.compressed, network: nw);
+    return ECPair.fromPrivateKey(decoded.privateKey, compressed: decoded.compressed, network: nw);
   }
 
   /// Creates a keypair from [publicKey. The returned keypair will contain [null] private key

@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'package:bitbox/src/utils/rest_api.dart';
 import 'package:hex/hex.dart';
 import 'utils/p2pkh.dart' show P2PKH, P2PKHData;
 import 'crypto/crypto.dart' as bcrypto;
@@ -99,6 +100,25 @@ class Transaction {
     if (offset != buffer.length)
       throw new ArgumentError('Transaction has unexpected data');
     return tx;
+  }
+
+  /// Returns details about a Transaction or Transactions
+  ///
+  /// [txIds] can be either [String] or [List] of Strings, otherwise throws [TypeError]
+  ///
+  /// If [returnAsMap] is true, it will return [Map] with txid used as key. Otherwise it will return [List]
+  static details(txIds, [bool returnAsMap = false]) async {
+    assert (txIds is String || txIds is List<String>);
+
+    if (txIds is String) {
+      return await RestApi.sendGetRequest("transaction/details", txIds) as Map;
+    } else if (txIds is List<String>) {
+      return await RestApi.sendPostRequest(
+        "transaction/details", "txids", txIds,
+        returnKey: returnAsMap ? "txid" : null);
+    } else {
+      throw TypeError();
+    }
   }
 
   bool isCoinbaseHash(buffer) {
