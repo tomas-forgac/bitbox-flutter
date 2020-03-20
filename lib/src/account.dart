@@ -9,7 +9,7 @@ class Account {
   Account(this.accountNode, [this.currentChild]);
 
   /// Returns address at the current position
-  String getCurrentAddress([legacyFormat = true]) {
+  String getCurrentAddress([bool legacyFormat = true]) {
     if (legacyFormat) {
       return accountNode.derive(currentChild).toLegacyAddress();
     } else {
@@ -18,7 +18,7 @@ class Account {
   }
 
   /// moves the position forward and returns an address from the new position
-  String getNextAddress([legacyFormat = true]) {
+  String getNextAddress([bool legacyFormat = true]) {
     if (legacyFormat) {
       return accountNode.derive(++currentChild).toLegacyAddress();
     } else {
