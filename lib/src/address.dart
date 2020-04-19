@@ -81,8 +81,7 @@ class Address {
   ///
   /// See https://developer.bitcoin.com/bitbox/docs/address#unconfirmed for details about the returned format. However
   /// note, that processing from array to map is done on the library side
-  static Future<dynamic> getUnconfirmed(addresses,
-      [returnAsMap = false]) async {
+  static Future<dynamic> getUnconfirmed(addresses, [returnAsMap = false]) async {
     final result = await _sendRequest("unconfirmed", addresses);
 
     if (result is Map) {
@@ -93,11 +92,9 @@ class Address {
 
       result.forEach((addressUtxoMap) {
         if (returnAsMap) {
-          returnMap[addressUtxoMap["cashAddr"]] =
-              Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
+          returnMap[addressUtxoMap["cashAddr"]] = Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
         } else {
-          addressUtxoMap["utxos"] =
-              Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
+          addressUtxoMap["utxos"] = Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
           returnList.add(addressUtxoMap);
         }
       });
@@ -126,11 +123,9 @@ class Address {
 
       result.forEach((addressUtxoMap) {
         if (returnAsMap) {
-          returnMap[addressUtxoMap["cashAddress"]] =
-              Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
+          returnMap[addressUtxoMap["cashAddress"]] = Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
         } else {
-          addressUtxoMap["utxos"] =
-              Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
+          addressUtxoMap["utxos"] = Utxo.convertMapListToUtxos(addressUtxoMap["utxos"]);
           returnList.add(addressUtxoMap);
         }
       });
@@ -140,6 +135,18 @@ class Address {
       throw FormatException("Invalid format returned: $result");
     }
   }
+
+  /// Returns details of all transactions of this address
+  ///
+  /// Returns
+  /// * [Map] if [addresses] is [String] with a signle address
+  /// * [List] if [addresses] is [List] of addresses and [returnAsMap] is false
+  /// * [Map] with address details with cashAddress as key
+  ///
+  /// See https://developer.bitcoin.com/bitbox/docs/address#transactions for format details.
+  /// Note, that conversion from List to Map when [returnAsMap] is true takes place in this library
+  static Future<dynamic> transactions(addresses, [returnAsMap = false]) async =>
+    await _sendRequest("transactions", addresses, returnAsMap);
 
   /// Converts legacy address to cash address
   static String toCashAddress(String legacyAddress,
