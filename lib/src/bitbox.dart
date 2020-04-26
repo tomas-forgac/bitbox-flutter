@@ -8,7 +8,7 @@ class Bitbox {
   static const trestUrl = "https://trest.bitcoin.com/v2/";
 
   /// Set non-default rest Url
-  static void setRestUrl({String restUrl = restUrl}) {
+  static void setRestUrl([String restUrl = restUrl]) {
     RestApi.restUrl = restUrl;
   }
 
