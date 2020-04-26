@@ -2,7 +2,7 @@ import 'package:bitbox/bitbox.dart' as Bitbox;
 
 void main() async {
   // set this to false to use mainnet
-  final testnet = false;
+  final testnet = true;
 
   // After running the code for the first time, depositing an amount to the address displayed in the console,
   // and waiting for confirmation, paste the generated mnemonic here,
@@ -100,7 +100,7 @@ void main() async {
       final tx = builder.build();
 
       // broadcast the transaction
-      final txid = await Bitbox.RawTransactions.sendRawTransaction(tx.toHex());
+      final txid = (await Bitbox.RawTransactions.sendRawTransaction([tx.toHex()])).first;
 
       // Yatta!
       print("Transaction broadcasted: $txid");

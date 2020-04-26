@@ -289,7 +289,7 @@ void main() {
           // set the appropraite rest api url
           Bitbox.Bitbox.setRestUrl(network == "mainnet" ? Bitbox.Bitbox.restUrl : Bitbox.Bitbox.trestUrl);
           // broadcast the transaction and print its id
-          final txid = await Bitbox.RawTransactions.sendRawTransaction(rawTx[network]);
+          final txid = (await Bitbox.RawTransactions.sendRawTransaction([rawTx[network]])).first;
           print("$network txid: $txid");
 
           expect(true, txid is String);
