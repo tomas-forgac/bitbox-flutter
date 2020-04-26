@@ -41,7 +41,7 @@ void main() async {
   // if you are using testnet, set the appropriate rest api url before making
   // any API calls (like getting address or transaction details or broadcasting a transaction
   if (testnet) {
-    Bitbox.Bitbox.setRestUrl(restUrl: Bitbox.Bitbox.trestUrl);
+    Bitbox.Bitbox.setRestUrl(Bitbox.Bitbox.trestUrl);
   }
 
   // get address details

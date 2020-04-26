@@ -147,7 +147,7 @@ void main() {
       utxosToFetch[network] = <String>[];
 
       // set rest url based on which network is being tested
-      Bitbox.Bitbox.setRestUrl(restUrl: network == "mainnet" ? Bitbox.Bitbox.restUrl : Bitbox.Bitbox.trestUrl);
+      Bitbox.Bitbox.setRestUrl(network == "mainnet" ? Bitbox.Bitbox.restUrl : Bitbox.Bitbox.trestUrl);
 
       // Placeholder for test addresses to fetch the details off
       List<String> testAddresses = <String>[];
@@ -187,7 +187,7 @@ void main() {
       // If there were addresses with non-zero balance for this network, fetch their utxos
       if (utxosToFetch[network].length > 0) {
         // set the appropriate rest api url
-        Bitbox.Bitbox.setRestUrl(restUrl: network == "mainnet" ? Bitbox.Bitbox.restUrl : Bitbox.Bitbox.trestUrl);
+        Bitbox.Bitbox.setRestUrl(network == "mainnet" ? Bitbox.Bitbox.restUrl : Bitbox.Bitbox.trestUrl);
 
         // fetch the required utxo details
         utxos[network] = await Bitbox.Address.utxo(utxosToFetch[network]) as List;
@@ -287,7 +287,7 @@ void main() {
         if ((network == "testnet" && BROADCAST_TESTNET_TRANSACTION)
             || (network == "mainnet" && BROADCAST_MAINNET_TRANSACTION)) {
           // set the appropraite rest api url
-          Bitbox.Bitbox.setRestUrl(restUrl: network == "mainnet" ? Bitbox.Bitbox.restUrl : Bitbox.Bitbox.trestUrl);
+          Bitbox.Bitbox.setRestUrl(network == "mainnet" ? Bitbox.Bitbox.restUrl : Bitbox.Bitbox.trestUrl);
           // broadcast the transaction and print its id
           final txid = await Bitbox.RawTransactions.sendRawTransaction(rawTx[network]);
           print("$network txid: $txid");

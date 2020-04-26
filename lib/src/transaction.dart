@@ -113,8 +113,7 @@ class Transaction {
     if (txIds is String) {
       return await RestApi.sendGetRequest("transaction/details", txIds) as Map;
     } else if (txIds is List<String>) {
-      return await RestApi.sendPostRequest(
-        "transaction/details", "txids", txIds,
+      return await RestApi.sendPostRequest("transaction/details", "txids", txIds,
         returnKey: returnAsMap ? "txid" : null);
     } else {
       throw TypeError();
