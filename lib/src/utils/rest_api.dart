@@ -9,7 +9,6 @@ class RestApi {
   }
 
   static Future<dynamic> sendGetRequest(String path, [String parameter = ""]) async {
-    print("$_restUrl$path/$parameter");
     final response = await http.get("$_restUrl$path/$parameter");
 
     if (response.statusCode == 200) {

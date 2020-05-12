@@ -20,6 +20,14 @@ class ECurve {
     BigInt dd = decodeBigInt(d);
     BigInt tt = decodeBigInt(tweak);
     Uint8List dt = encodeBigInt((dd + tt) % n);
+    if (dt.length < 32) {
+      Uint8List dt2 = Uint8List(32);
+      for (int i = 0; i < dt.length; i++) {
+        dt2[i+(32 - dt.length)] = dt[i];
+      }
+      dt = dt2;
+    }
+
     if (!isPrivate(dt)) return null;
     return dt;
   }
