@@ -11,3 +11,9 @@ Light version of Bitcoin.com's Bitbox library
 - Added support for bip21 implemented by RomitRadical
 - Added transaction details support
 - Fixed some API issues and
+
+## [0.0.4] - 2020-05-12
+
+- padded a private key by if it was generated shorter than 32 bytes
+- added support for broadcasting more transactions
+- changed resturl parameter to non-named (didn't make sense to have it named when it was the only one))
