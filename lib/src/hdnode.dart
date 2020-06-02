@@ -193,7 +193,6 @@ class HDNode {
     hd.depth = depth + 1;
     hd.index = index;
     hd.parentFingerprint = fingerprint.buffer.asByteData().getUint32(0);
-
     return hd;
   }
 

@@ -239,7 +239,7 @@ class Transaction {
     void writeSlice(Uint8List slice) {
       tBuffer.setRange(tOffset, slice.length + tOffset, slice);
       tOffset += slice.length;
-    };
+    }
 
     void writeUint32(int i) {
       tBuffer.buffer.asByteData().setUint32(tOffset, i, Endian.little);

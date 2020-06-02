@@ -17,3 +17,7 @@ Light version of Bitcoin.com's Bitbox library
 - padded a private key by if it was generated shorter than 32 bytes
 - added support for broadcasting more transactions
 - changed resturl parameter to non-named (didn't make sense to have it named when it was the only one))
+
+## [0.0.4] - 2020-06-02
+
+- fixed signing mechanism, so it would better handle 31-byte private key

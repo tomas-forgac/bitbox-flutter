@@ -189,8 +189,8 @@ class TransactionBuilder {
       }
 
       final signature = keyPair.sign(signatureHash);
-
       input.signatures[i] = bscript.encodeSignature(signature, hashType);
+
       signed = true;
     }
 
@@ -350,7 +350,6 @@ class TransactionBuilder {
       Opcodes.OP_EQUALVERIFY,
       Opcodes.OP_CHECKSIG
     ]);
-
 
     final expanded = _expandOutput(prevOutScript, kpPubKey);
 
